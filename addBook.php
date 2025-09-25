@@ -194,6 +194,7 @@ if ($mysql->connect_error) {
             $year = $_POST["year"];
             $isbn = $_POST["isbn"];
 
+            //prevents adding a book with publication year outside the 
             if ($year < 1500 || $year > 2025) {
                 echo "<p>The publication year should stay between the year 1500 and 2025</p>";
                 exit;

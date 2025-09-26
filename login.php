@@ -51,8 +51,8 @@
 <body>
   <div class="box">
     <h2>Select User Type</h2>
-    <a href="userCatalog.php" class="btn">Student</a>
-    <a href="adminCatalog.php" class="btn">Admin</a>
+    <a href="userCatalog.php" class="btn">User</a>
+    <a href="librarianCatalog.php" class="btn">Librarian</a>
   </div>
 </body>
 </html>

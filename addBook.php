@@ -2,7 +2,7 @@
 $servername = "db";
 $username = "root";
 $password = "rootpassword";
-$dbname = "library_db";
+$dbname = "librarymanagementsystem_db";
 $mysql = new mysqli($servername, $username, $password, $dbname);
 if ($mysql->connect_error) {
     echo "<h2> Connection Failed </h2>";
@@ -161,7 +161,7 @@ if ($mysql->connect_error) {
             <a href="login.php" style = "margin-right: 125px">
                 <button>Log out</button>
             </a>
-            <a href ="adminCatalog.php">
+            <a href ="librarianCatalog.php">
                 <button>View Book Catalog</button>
             </a>
         </div>
@@ -219,5 +219,4 @@ if ($mysql->connect_error) {
     ?>
 </body>
 </html>
-
 

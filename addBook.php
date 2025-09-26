@@ -1,5 +1,5 @@
 <?php
-$servername = "db";
+$servername = "mysql-db";
 $username = "root";
 $password = "rootpassword";
 $dbname = "librarymanagementsystem_db";

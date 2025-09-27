@@ -194,7 +194,7 @@ if ($mysql->connect_error) {
     <br>
 
     <?php
-        //responsible for adding books
+        // Responsible for adding books
         if (isset($_POST["addBook"])) {
             $title = $_POST["title"];
             $author = $_POST["author"];
@@ -209,16 +209,16 @@ if ($mysql->connect_error) {
             $checkquery = "SELECT * FROM books WHERE isbn = '$isbn'";
             $result = $mysql->query($checkquery);
 
-            //checks if the book's isbn is unique
+            // Checks if the book's isbn is unique
             if ($result->num_rows > 0) {
                 echo "<p>Book with ISBN $isbn already exists</p>";
             } else {
                 $insertQuery = "INSERT INTO books (title, author, year, isbn)
                                 VALUES ('$title', '$author', '$year', '$isbn')";
                 if ($mysql->query($insertQuery) === true) {
-                    echo "<p>Book added successfully</p>";
+                     echo "<p style='color: green; text-align: center;'>Book added successfully!</p>";
                 } else {
-                    echo "<p>Book addition failed</p>";
+                     echo "<p style='color: green; text-align: center;'>Book addition failed.</p>";
                 }
             }
         }

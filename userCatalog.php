@@ -34,7 +34,7 @@ $result = $mysql->query($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Book Catalog</title> 
+    <title>User Book Catalog</title> 
     <style>
         /* CSS Styling Section */
         body {
@@ -136,6 +136,7 @@ $result = $mysql->query($query);
 <body>
     <div class="container">
         <div class="header">
+            <h2>User Book Catalog</h2>
               <!-- Top navigation (Logout button) -->
             <a href="login.php"><button>Log out</button></a>
         </div>

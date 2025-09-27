@@ -1,4 +1,8 @@
 <?php
+/* --------------------------------------
+   Database Connection Setup
+   Connect to MySQL server and Library Management System
+-----------------------------------------*/
 $servername = "mysql-db";
 $username = "root";
 $password = "rootpassword";
@@ -24,7 +28,7 @@ if (isset($_POST['delete_book'])) {
     $stmt->close();
 }
 
-// --- START: UPDATED Handle Book Edit Submission (UPDATE) ---
+// Book Edit Submission 
 if (isset($_POST['edit_book'])) {
     $book_id = filter_var($_POST['book_id'], FILTER_SANITIZE_NUMBER_INT);
     $title = trim($_POST['title']);
@@ -34,12 +38,12 @@ if (isset($_POST['edit_book'])) {
     
     $error_message = '';
 
-    // 1. Validate Publication Year
+    // Validate Publication Year
     if ($year < 1500 || $year > 2025) {
         $error_message = "<p style='color: red; text-align: center;'>The publication year should stay between the year 1500 and 2025</p>";
     }
 
-    // 2. Validate Unique ISBN (must not match any other book's ISBN)
+    // Validate Unique ISBN (must not match any other book's ISBN)
     if (empty($error_message)) {
         // Query to check if the ISBN already exists for a DIFFERENT book ID
         $check_isbn_query = "SELECT id FROM books WHERE isbn = ? AND id != ?";
@@ -54,7 +58,7 @@ if (isset($_POST['edit_book'])) {
         $stmt_check->close();
     }
 
-    // 3. Perform Update if no errors
+    // Perform Update if no errors
     if (empty($error_message)) {
         $update_query = "UPDATE books SET title = ?, author = ?, year = ?, isbn = ? WHERE id = ?";
         $stmt = $mysql->prepare($update_query);
@@ -69,7 +73,6 @@ if (isset($_POST['edit_book'])) {
         echo $error_message;
     }
 }
-// --- END: UPDATED Handle Book Edit Submission (UPDATE) ---
 
 // Handle Search and Fetch Books
 $search = "";
@@ -88,7 +91,7 @@ $result = $mysql->query($query);
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edit and Remove Books</title>
 <style>
-/* --- STYLES (Retained from last version) --- */
+
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #74ebd5, #ACB6E5);
@@ -132,7 +135,7 @@ h2 {
     background: #1b5e20;
 }
 
-/* Search Form - Combined Search Box and Button */
+/* Search Form */
 .search-form {
     display: flex;
     justify-content: center;

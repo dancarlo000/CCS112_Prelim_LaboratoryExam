@@ -29,7 +29,7 @@ $result = $mysql->query($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Book Catalog</title>
+    <title>Librarian Book Catalog</title>
     <style>
          /* CCS STYLES DESIGN */
         body {
@@ -130,6 +130,7 @@ $result = $mysql->query($query);
 </head>
 <body>
     <div class="container">
+          <h2>Librarian Book Catalog</h2>
          <!-- Top navigation -->
         <div class="header">
             <a href="login.php"><button>Log out</button></a>

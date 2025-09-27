@@ -54,8 +54,8 @@
     <!-- Top navigation -->
   <div class="box">
     <h2>Select User Type</h2>
-    <a href="userCatalog.php" class="btn">User</a>
-    <a href="librarianCatalog.php" class="btn">Librarian</a>
+    <a href="UserCatalog.php" class="btn">User</a>
+    <a href="LibrarianCatalog.php" class="btn">Librarian</a>
   </div>
 </body>
 </html>

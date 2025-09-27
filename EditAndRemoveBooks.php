@@ -260,9 +260,9 @@ tr:nth-child(even) {
     <h2>Edit and Remove Book</h2>
 
     <div class="header">
-        <a href="login.php"><button>Log out</button></a>
-        <a href="addBook.php"><button>Add Book</button></a>
-        <a href="librarianCatalog.php"><button>Library Catalog</button></a>
+        <a href="Login.php"><button>Log out</button></a>
+        <a href="AddBook.php"><button>Add Book</button></a>
+        <a href="LibrarianCatalog.php"><button>Library Catalog</button></a>
         <a href="ReturnAndBorrowBooks.php"><button>Return and Borrow Books</button></a>
     </div>
 </div>

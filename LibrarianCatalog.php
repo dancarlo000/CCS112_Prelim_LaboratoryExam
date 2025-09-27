@@ -133,8 +133,8 @@ $result = $mysql->query($query);
           <h2>Librarian Book Catalog</h2>
          <!-- Top navigation -->
         <div class="header">
-            <a href="login.php"><button>Log out</button></a>
-            <a href="addBook.php"><button>Add Book</button></a>
+            <a href="Login.php"><button>Log out</button></a>
+            <a href="AddBook.php"><button>Add Book</button></a>
             <a href="ReturnAndBorrowBooks.php"><button>Return and Borrow Books</button></a>
             <a href="EditAndRemoveBooks.php"><button>Edit and Remove Books</button></a>
 

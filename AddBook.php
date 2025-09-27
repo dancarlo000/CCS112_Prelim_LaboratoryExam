@@ -165,10 +165,10 @@ if ($mysql->connect_error) {
     <div class="container"> 
             <!-- Top navigation -->
         <div class ="header">
-            <a href="login.php" style = "margin-right: 125px">
+            <a href="Login.php" style = "margin-right: 125px">
                 <button>Log out</button>
             </a>
-            <a href ="librarianCatalog.php">
+            <a href ="LibrarianCatalog.php">
                 <button>View Book Catalog</button>
             </a>
         </div>

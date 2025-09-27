@@ -138,7 +138,7 @@ $result = $mysql->query($query);
         <div class="header">
             <h2>User Book Catalog</h2>
               <!-- Top navigation (Logout button) -->
-            <a href="login.php"><button>Log out</button></a>
+            <a href="Login.php"><button>Log out</button></a>
         </div>
         <!-- Catalog and Search Section -->
         <div id="catalog">

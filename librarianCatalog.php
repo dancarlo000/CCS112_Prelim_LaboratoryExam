@@ -1,4 +1,8 @@
 <?php
+/* --------------------------------------
+   Database Connection Setup
+   Connect to MySQL server and Library Management System
+-----------------------------------------*/
 $servername = "mysql-db";
 $username = "root";
 $password = "rootpassword";
@@ -15,11 +19,11 @@ if (isset($_GET['search'])) {
     $search = $mysql->real_escape_string($_GET['search']);
     $query = "SELECT * FROM books WHERE title LIKE '%$search%' OR author LIKE '%$search%'";
 } else {
-    $query = "SELECT * FROM books";
+    $query = "SELECT * FROM books WHERE status='available'";
 }
 $result = $mysql->query($query);
 ?>
-
+<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +31,7 @@ $result = $mysql->query($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Book Catalog</title>
     <style>
+         /* CCS STYLES DESIGN */
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #74ebd5, #ACB6E5);
@@ -125,18 +130,22 @@ $result = $mysql->query($query);
 </head>
 <body>
     <div class="container">
+         <!-- Top navigation -->
         <div class="header">
             <a href="login.php"><button>Log out</button></a>
             <a href="addBook.php"><button>Add Book</button></a>
-        </div>
+            <a href="ReturnAndBorrowBooks.php"><button>Return and Borrow Books</button></a>
+            <a href="EditAndRemoveBooks.php"><button>Edit and Remove Books</button></a>
 
+        </div>
+        <!-- Search Form -->
         <div id="catalog">
             <h4>Librarian Book Catalog</h4>
             <form method="GET" action="">
                 <input type="text" name="search" placeholder="Search by Title or Author" value="<?php echo htmlspecialchars($search); ?>">
                 <input type="submit" value="Search">
             </form>
-
+        <!-- Book Table -->
             <table>
                 <tr>
                     <th>Book Title</th>

@@ -1,4 +1,8 @@
 <?php
+/* --------------------------------------
+   Database Connection Setup
+   Connect to MySQL server and Library Management System
+-----------------------------------------*/
 $servername = "mysql-db";
 $username = "root";
 $password = "rootpassword";
@@ -9,7 +13,12 @@ if ($mysql->connect_error) {
     exit;
 }
 
-// Handle search
+/* --------------------------------------
+   Search Feature
+   If user submits a search, filter by title or author.
+   Otherwise, display all books.
+-----------------------------------------*/
+
 $search = "";
 if (isset($_GET['search'])) {
     $search = $mysql->real_escape_string($_GET['search']);
@@ -19,14 +28,15 @@ if (isset($_GET['search'])) {
 }
 $result = $mysql->query($query);
 ?>
-
+<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Book Catalog</title>
+    <title>Admin Book Catalog</title> 
     <style>
+        /* CSS Styling Section */
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #74ebd5, #ACB6E5);
@@ -126,10 +136,10 @@ $result = $mysql->query($query);
 <body>
     <div class="container">
         <div class="header">
+              <!-- Top navigation (Logout button) -->
             <a href="login.php"><button>Log out</button></a>
-            <a href="addBook.php"><button>Add Book</button></a>
         </div>
-
+        <!-- Catalog and Search Section -->
         <div id="catalog">
             <h4>User Book Catalog</h4>
             <form method="GET" action="">
@@ -137,7 +147,8 @@ $result = $mysql->query($query);
                 <input type="submit" value="Search">
             </form>
 
-            <table>
+            <!-- Book Table -->
+            <table> 
                 <tr>
                     <th>Book Title</th>
                     <th>Author</th>

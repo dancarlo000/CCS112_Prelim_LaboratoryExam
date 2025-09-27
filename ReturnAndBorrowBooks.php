@@ -1,10 +1,13 @@
 <?php
+/* --------------------------------------
+   Database Connection Setup
+   Connect to MySQL server and Library Management System
+-----------------------------------------*/
 $servername = "mysql-db";
 $username = "root";
 $password = "rootpassword";
 $dbname = "librarymanagementsystem_db";
 
-// Connect to database
 $mysql = new mysqli($servername, $username, $password, $dbname);
 if ($mysql->connect_error) {
     die("<h2>Connection Failed</h2>");
@@ -30,185 +33,185 @@ if (isset($_GET['search'])) {
 }
 $result = $mysql->query($query);
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Library Borrow & Return</title>
-<style>
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-    color: #2e4d2e;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-h2 {
-    color: #2e7d32;
-    margin-bottom: 10px;
-}
-
-/* Header Buttons */
-.header {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-.header a button {
-    display: inline-block;
-    color: #fff;
-    background: #2e7d32;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.header a button:hover {
-    background: #1b5e20;
-}
-
-/* Search Form */
-.search-form {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-.search-form input[type="text"] {
-    padding: 8px 12px;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-.search-form input[type="submit"] {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
-    background: #2e7d32;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.search-form input[type="submit"]:hover {
-    background: #1b5e20;
-}
+<!-- HTML -->
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Library Borrow & Return</title>
+    <style>
+            /* CCS STYLES DESIGN */
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+                color: #2e4d2e;
+                text-align: center;
+                margin: 0;
+                padding: 20px;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            h2 {
+                color: #2e7d32;
+                margin-bottom: 10px;
+            }
 
 
-/* Table Styles */
-table {
-    width: 90%;              /* slightly smaller than full width */
-    max-width: 900px;        /* restricts maximum size */
-    margin: 0 auto;          /* centers the table */
-    border-collapse: collapse;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    background: white;
-}
-th, td {
-    padding: 12px 15px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-th {
-    background: #2e7d32;
-    color: white;
-}
-tr:nth-child(even) {
-    background: #f7f7f7;
-}
+            .header {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .header a button {
+                display: inline-block;
+                color: #fff;
+                background: #2e7d32;
+                padding: 10px 20px;
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            .header a button:hover {
+                background: #1b5e20;
+            }
 
 
-/* Borrow / Return Buttons */
-button.borrow {
-    background: #4CAF50;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-}
-button.borrow:hover {
-    background: #388e3c;
-}
-button.return {
-    background: #f44336;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-}
-button.return:hover {
-    background: #d32f2f;
-}
+            .search-form {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .search-form input[type="text"] {
+                padding: 8px 12px;
+                width: 250px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+            .search-form input[type="submit"] {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 6px;
+                background: #2e7d32;
+                color: white;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            .search-form input[type="submit"]:hover {
+                background: #1b5e20;
+            }
 
-/* Responsive Table */
-@media screen and (max-width: 768px) {
-    table, tr, td, th {
-        display: block;
-    }
-    tr {
-        margin-bottom: 15px;
-    }
-    td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-    }
-    td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        font-weight: bold;
-        text-align: left;
-    }
-    th { display: none; }
-}
-</style>
-</head>
+
+
+            table {
+                width: 90%;              
+                max-width: 900px;       
+                margin: 0 auto;         
+                border-collapse: collapse;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                background: white;
+            }
+            th, td {
+                padding: 12px 15px;
+                text-align: center;
+                border: 1px solid #ddd;
+            }
+            th {
+                background: #2e7d32;
+                color: white;
+            }
+            tr:nth-child(even) {
+                background: #f7f7f7;
+            }
+
+
+
+            button.borrow {
+                background: #4CAF50;
+                color: white;
+                padding: 6px 12px;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            button.borrow:hover {
+                background: #388e3c;
+            }
+            button.return {
+                background: #f44336;
+                color: white;
+                padding: 6px 12px;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            button.return:hover {
+                background: #d32f2f;
+            }
+
+
+            @media screen and (max-width: 768px) {
+                table, tr, td, th {
+                    display: block;
+                }
+                tr {
+                    margin-bottom: 15px;
+                }
+                td {
+                    text-align: right;
+                    padding-left: 50%;
+                    position: relative;
+                }
+                td::before {
+                    content: attr(data-label);
+                    position: absolute;
+                    left: 15px;
+                    font-weight: bold;
+                    text-align: left;
+                }
+                th { display: none; }
+            }
+            </style>
+    </head>
 <body>
 
-<div class="container">
-    <h2>Return and Borrow Book</h2>
-
-    <div class="header">
-        <a href="login.php"><button>Log out</button></a>
-        <a href="addBook.php"><button>Add Book</button></a>
-        <a href="librarianCatalog.php"><button>Library Catalog</button></a>
-        <a href="EditAndRemoveBooks.php"><button>Edit and Remove Books</button></a>
+    <div class="container">
+        <h2>Return and Borrow Book</h2>
+        <!-- Top navigation -->
+        <div class="header">
+            <a href="login.php"><button>Log out</button></a>
+            <a href="addBook.php"><button>Add Book</button></a>
+            <a href="librarianCatalog.php"><button>Library Catalog</button></a>
+            <a href="EditAndRemoveBooks.php"><button>Edit and Remove Books</button></a>
+        </div>
     </div>
-</div>
 
 <!-- Search Form -->
-<form method="GET" action="" class="search-form">
-    <input type="text" name="search" placeholder="Search by Title or Author" value="<?php echo htmlspecialchars($search); ?>">
-    <input type="submit" value="Search">
-</form>
+    <form method="GET" action="" class="search-form">
+        <input type="text" name="search" placeholder="Search by Title or Author" value="<?php echo htmlspecialchars($search); ?>">
+        <input type="submit" value="Search">
+    </form>
 
 <!-- Book Table -->
-<table>
-<tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Year</th>
-    <th>ISBN</th>
-    <th>Status</th>
-    <th>Action</th>
-</tr>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>ISBN</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
 <?php
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -232,7 +235,7 @@ if ($result->num_rows > 0) {
 ?>
 </table>
 
-<?php $mysql->close(); ?>
-</body>
+        <?php $mysql->close(); ?>
+    </body>
 </html>
 

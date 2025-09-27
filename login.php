@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log In</title>
   <style>
+        /* ===== CSS STYLES DESIGN ===== */
+
     body {
       margin: 0;
       height: 100vh;
@@ -30,7 +33,7 @@
       margin: 10px;
       border: none;
       border-radius: 8px;
-      background-color: #4CAF50;a
+      background-color: #4CAF50;
       color: white;
       font: white;
       font-size: 16px;
@@ -49,6 +52,7 @@
 
 </head>
 <body>
+    <!-- Top navigation -->
   <div class="box">
     <h2>Select User Type</h2>
     <a href="userCatalog.php" class="btn">User</a>

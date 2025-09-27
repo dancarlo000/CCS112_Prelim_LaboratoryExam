@@ -1,4 +1,8 @@
 <?php
+/* --------------------------------------
+   Database Connection Setup
+   Connect to MySQL server and Library Management System
+-----------------------------------------*/
 $servername = "mysql-db";
 $username = "root";
 $password = "rootpassword";
@@ -9,14 +13,16 @@ if ($mysql->connect_error) {
     exit;
 }
 ?>
-
+<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add book page</title>
+    
     <style>
+        /* CCS STYLES DESIGN */
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #74ebd5, #ACB6E5);
@@ -157,6 +163,7 @@ if ($mysql->connect_error) {
 
 <body>
     <div class="container"> 
+            <!-- Top navigation -->
         <div class ="header">
             <a href="login.php" style = "margin-right: 125px">
                 <button>Log out</button>

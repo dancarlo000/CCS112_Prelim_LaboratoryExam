@@ -40,9 +40,10 @@ $result = $mysql->query($query);
 <style>
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background: #f0f4f8;
-    color: #333;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    color: #2e4d2e;
+    text-align: center;
     margin: 0;
     padding: 20px;
 }
@@ -50,11 +51,33 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 h2 {
     color: #2e7d32;
     margin-bottom: 10px;
+}
+
+/* Header Buttons */
+.header {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.header a button {
+    display: inline-block;
+    color: #fff;
+    background: #2e7d32;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.header a button:hover {
+    background: #1b5e20;
 }
 
 /* Search Form */
@@ -83,10 +106,12 @@ h2 {
     background: #1b5e20;
 }
 
+
 /* Table Styles */
 table {
-    width: 90%;
-    max-width: 900px;
+    width: 90%;              /* slightly smaller than full width */
+    max-width: 900px;        /* restricts maximum size */
+    margin: 0 auto;          /* centers the table */
     border-collapse: collapse;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background: white;
@@ -103,6 +128,7 @@ th {
 tr:nth-child(even) {
     background: #f7f7f7;
 }
+
 
 /* Borrow / Return Buttons */
 button.borrow {
@@ -157,7 +183,15 @@ button.return:hover {
 <body>
 
 <div class="container">
-<h2>Library Book Catalog</h2>
+    <h2>Return and Borrow Book</h2>
+
+    <div class="header">
+        <a href="login.php"><button>Log out</button></a>
+        <a href="addBook.php"><button>Add Book</button></a>
+        <a href="librarianCatalog.php"><button>Library Catalog</button></a>
+        <a href="EditAndRemoveBooks.php"><button>Edit and Remove Books</button></a>
+    </div>
+</div>
 
 <!-- Search Form -->
 <form method="GET" action="" class="search-form">
@@ -197,8 +231,8 @@ if ($result->num_rows > 0) {
 }
 ?>
 </table>
-</div>
 
 <?php $mysql->close(); ?>
 </body>
 </html>
+

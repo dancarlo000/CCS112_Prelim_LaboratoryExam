@@ -107,9 +107,24 @@ body {
     gap: 10px;
 }
 h2 {
-    color: #2e7d32;
+    color: #1b5e20;
     margin-bottom: 10px;
     font-size: 24px;
+}
+
+a {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #fff;
+    background: #2e7d32;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    background: #1b5e20;
 }
 
 /* Header/Navigation Bar */
@@ -139,20 +154,20 @@ h2 {
 .search-form {
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 10px;
     margin-bottom: 20px;
+    border-radius: 6px;
 }
 .search-form input[type="text"] {
-    padding: 10px;
+    padding: 8px 12px;
     width: 250px;
     border: 1px solid #ccc;
-    border-radius: 6px 0 0 6px;
-    margin-right: 0;
+    border-radius: 6px;
 }
 .search-form input[type="submit"] {
-    padding: 10px 15px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 0 6px 6px 0;
+    border-radius: 6px;
     background: #2e7d32;
     color: white;
     cursor: pointer;
@@ -262,8 +277,8 @@ tr:nth-child(even) {
     <div class="header">
         <a href="Login.php"><button>Log out</button></a>
         <a href="AddBook.php"><button>Add Book</button></a>
-        <a href="LibrarianCatalog.php"><button>Library Catalog</button></a>
-        <a href="ReturnAndBorrowBooks.php"><button>Return and Borrow Books</button></a>
+        <a href="LibrarianCatalog.php"><button>Back to Library Catalog</button></a>
+        <!-- <a href="ReturnAndBorrowBooks.php"><button>Return and Borrow Books</button></a> -->
     </div>
 </div>
 
@@ -290,20 +305,20 @@ tr:nth-child(even) {
                 while ($row = $result->fetch_assoc()) {
                     $book_id = htmlspecialchars($row['id']);
                     $book_title = htmlspecialchars($row['title']);
-                    echo "<tr>
-                            <td>{$book_title}</td>
-                            <td>".htmlspecialchars($row['author'])."</td>
-                            <td>".htmlspecialchars($row['year'])."</td>
-                            <td>".htmlspecialchars($row['isbn'])."</td>
-                            <td>
-                                <a href='?edit_id={$book_id}&search={$search}' class='action-button edit-btn'>Edit</a>
-                                
-                                <form method='POST' style='display:inline;' onsubmit=\"return confirm('Confirm removal of: {$book_title}?');\">
-                                    <input type='hidden' name='book_id_to_delete' value='{$book_id}'>
-                                    <button type='submit' name='delete_book' class='action-button remove-btn'>Remove</button>
-                                </form>
-                            </td>
-                        </tr>";
+                   echo "<tr>
+                        <td>{$book_title}</td>
+                        <td>" . htmlspecialchars($row['author']) . "</td>
+                        <td>" . htmlspecialchars($row['year']) . "</td>
+                        <td>" . htmlspecialchars($row['isbn']) . "</td>
+                        <td>
+                            <a href='?edit_id={$book_id}&search={$search}' class='action-button edit-btn'>Edit</a>
+
+                            <form method='POST' action='' style='display:inline;' onsubmit=\"return confirm('Are you sure you want to delete this book?');\">
+                                <input type='hidden' name='book_id_to_delete' value='" . $row['id'] . "'>
+                                <button type='submit' name='delete_book' class='action-button remove-btn'>Delete</button>
+                            </form>    
+                        </td>
+                    </tr>";
                 }
             } else {
                 echo "<tr><td colspan='5'>No books found</td></tr>";

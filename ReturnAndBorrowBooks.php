@@ -57,7 +57,7 @@ $result = $mysql->query($query);
                 gap: 10px;
             }
             h2 {
-                color: #2e7d32;
+                color: #1b5e20;
                 margin-bottom: 10px;
             }
 
@@ -191,8 +191,8 @@ $result = $mysql->query($query);
         <div class="header">
             <a href="Login.php"><button>Log out</button></a>
             <a href="AddBook.php"><button>Add Book</button></a>
-            <a href="LibrarianCatalog.php"><button>Library Catalog</button></a>
-            <a href="EditAndRemoveBooks.php"><button>Edit and Remove Books</button></a>
+            <a href="LibrarianCatalog.php"><button>Back to Library Catalog</button></a>
+           <!-- <a href="EditAndRemoveBooks.php"><button>Edit and Remove Books</button></a> -->
         </div>
     </div>
 
@@ -205,9 +205,9 @@ $result = $mysql->query($query);
 <!-- Book Table -->
     <table>
         <tr>
-            <th>Title</th>
+            <th>Book Title</th>
             <th>Author</th>
-            <th>Year</th>
+            <th>Publication Year</th>
             <th>ISBN</th>
             <th>Status</th>
             <th>Action</th>

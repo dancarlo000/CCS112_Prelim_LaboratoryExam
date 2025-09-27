@@ -24,7 +24,7 @@ if (isset($_GET['search'])) {
     $search = $mysql->real_escape_string($_GET['search']);
     $query = "SELECT * FROM books WHERE title LIKE '%$search%' OR author LIKE '%$search%'";
 } else {
-    $query = "SELECT * FROM books";
+    $query = "SELECT * FROM books WHERE status = 'available'";
 }
 $result = $mysql->query($query);
 ?>

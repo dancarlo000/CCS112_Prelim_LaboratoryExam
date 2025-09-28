@@ -18,73 +18,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        body {
-          margin: 0;
-          height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: linear-gradient(135deg, #74ebd5, #ACB6E5); 
-          font-family: Arial, sans-serif;
-        }
-        .box {
-          background: white;
-          padding: 40px;
-          border-radius: 15px;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-          text-align: center;
-          width: 300px;
-        }
-        h2 {
-          margin-bottom: 20px;
-          color: #07660b;
-        }
-        input[type="text"], input[type="password"] {
-          width: 90%;
-          padding: 10px;
-          margin: 10px 0;
-          border: 1px solid #ccc;
-          border-radius: 8px;
-          font-size: 14px;
-        }
-        input[type="submit"] {
-          width: 100%;
-          padding: 12px;
-          margin-top: 15px;
-          border: none;
-          border-radius: 8px;
-          background-color: #4CAF50;
-          color: white;
-          font-size: 16px;
-          cursor: pointer;
-          transition: background 0.3s ease;
-        }
-        input[type="submit"]:hover {
-          background-color: #07660b;
-        }
-        .error {
-          color: red;
-          margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;  /* plain background, no gradient */
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: #ffffff;
+      border: 2px solid #2e7d32;
+      border-radius: 12px;
+      padding: 30px 25px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin: 0 0 20px 0;
+      color: #1b5e20;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="text"], 
+    input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      line-height: 1.4;   /* keeps placeholder and text aligned */
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    input::placeholder {
+      color: #888;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background: #1b5e20;
+    }
+
+    .error {
+      color: red;
+      margin-top: 12px;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-    <div class="box">
-        <h2>Log In</h2>
-        <form action="Login.php" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Log in">
-        </form>
-        <?php 
-            if (!empty($error)) {
-                echo "<p class='error'>$error</p>";
-            }
-        ?>
-    </div>
+  <div class="login-container">
+    <h2>Log In</h2>
+    <form action="Login.php" method="post">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="submit" value="Log in">
+    </form>
+    <?php 
+      if (!empty($error)) {
+          echo "<p class='error'>$error</p>";
+      }
+    ?>
+  </div>
 </body>
 </html>
+

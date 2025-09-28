@@ -92,201 +92,219 @@ $result = $mysql->query($query);
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edit and Remove Books</title>
 <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-            color: #2e4d2e;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        h2 {
-            color: #1b5e20;
-        }
-        a button {
-            display: inline-block;
-            margin: 5px;
-            color: #fff;
-            background: #2e7d32;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        a button:hover {
-            background: #1b5e20;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-        #catalog {
-            background: #ffffff;
-            border: 2px solid #2e7d32;
-            border-radius: 10px;
-            padding: 20px;
-            width: 80%;
-            max-width: 900px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        #catalog h4 {
-            margin: 0 0 15px 0;
-            color: #1b5e20;
-        }
-        #searchBar {
-            margin-bottom: 15px;
-        }
-        #searchBar input[type="text"] {
-            padding: 10px;
-            width: 60%;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        #searchBar button {
-            padding: 10px 15px;
-            margin-left: 5px;
-            background: #2e7d32;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        #searchBar button:hover {
-            background: #1b5e20;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: center;
-        }
-        th {
-            background: #2e7d32;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background: #f2f2f2;
-        }
-        .action-button {
-            display: inline-block;
-            padding: 6px 12px;
-            margin: 2px;
-            font-size: 0.9em;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-        .edit-btn { background: #2e7d32; }
-        .edit-btn:hover { background: #1b5e20; }
-        .remove-btn { background: #d32f2f; }
-        .remove-btn:hover { background: #b71c1c; }
-        .edit-form-container {
-            background: #ffffff;
-            border: 2px solid #2e7d32;
-            border-radius: 10px;
-            padding: 20px;
-            width: 450px;
-            margin: 30px auto;
-            text-align: left;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .edit-form-container h4 {
-            margin: 0 0 15px 0;
-            text-align: center;
-            color: #1b5e20;
-        }
-        .edit-form-container form {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 10px 15px;
-            align-items: center;
-            margin-bottom: 0;
-        }
-        .edit-form-container input[type="submit"] {
-            grid-column: span 2;
-            background: #2e7d32;
-            color: white;
-            border: none;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-            width: auto;
-        }
-        .edit-form-container input[type="submit"]:hover { 
-            background: #1b5e20;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f7fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+        background-color: #2e7d32;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar h1 {
+        margin: 0;
+        font-size: 20px;
+    }
+    .navbar .nav-links {
+        display: flex;
+        gap: 10px;
+    }
+    .navbar button {
+        background: white;
+        color: #2e7d32;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+    .navbar button:hover {
+        background: #e0e0e0;
+    }
+
+    /* Container */
+    .container {
+        margin: 30px auto;
+        max-width: 1000px;
+        background: #fff;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: #2e7d32;
+        margin-bottom: 15px;
+    }
+
+    /* Search Bar */
+    #searchBar {
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+    }
+    #searchBar input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+    #searchBar button {
+        padding: 10px 15px;
+        background: #2e7d32;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    #searchBar button:hover {
+        background: #1b5e20;
+    }
+
+    /* Table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    th {
+        background: #2e7d32;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* Action buttons */
+    .action-button {
+        display: inline-block;
+        padding: 6px 12px;
+        margin: 2px;
+        font-size: 0.9em;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+    .edit-btn { background: #2e7d32; }
+    .edit-btn:hover { background: #1b5e20; }
+    .remove-btn { background: #d32f2f; }
+    .remove-btn:hover { background: #b71c1c; }
+
+    /* Edit Form */
+    .edit-form-container {
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 30px auto;
+        max-width: 500px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .edit-form-container h4 {
+        margin: 0 0 15px 0;
+        text-align: center;
+        color: #2e7d32;
+    }
+    .edit-form-container form {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 10px 15px;
+        align-items: center;
+        margin-bottom: 0;
+    }
+    .edit-form-container input[type="submit"] {
+        grid-column: span 2;
+        background: #2e7d32;
+        color: white;
+        border: none;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .edit-form-container input[type="submit"]:hover { 
+        background: #1b5e20;
+    }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Edit and Remove Books</h2>
-
-    <div class="header">
+<!-- Navbar -->
+<div class="navbar">
+    <h1>Edit & Remove Books</h1>
+    <div class="nav-links">
         <a href="Login.php"><button>Log out</button></a>
-        <a href="AddBook.php"><button>Add Book</button></a>
-        <a href="LibrarianCatalog.php"><button>Back to Library Catalog</button></a>
+        <a href="LibrarianCatalog.php"><button>Back to Catalog</button></a>
+    </div>
+</div>
+
+<!-- Main Container -->
+<div class="container">
+    <h2>Book List</h2>
+
+    <!-- Search Bar -->
+    <div id="searchBar">
+        <form method="GET" action="" style="display: flex; width: 100%; gap: 10px;">
+            <input type="text" name="search" placeholder="Search by Title, Author, Year, ISBN..." 
+                   value="<?php echo htmlspecialchars($search); ?>">
+            <button type="submit">Search</button>
+        </form>
     </div>
 
-    <div id="catalog">
-        <h4>Book List</h4>
-
-        <div id="searchBar">
-            <form method="GET" action="">
-                <input type="text" name="search" placeholder="Search by Title, Author, Year, ISBN..." value="<?php echo htmlspecialchars($search); ?>">
-                <button type="submit">Search</button>
-            </form>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Book Title</th>
-                    <th>Author</th>
-                    <th>Publication Year</th>
-                    <th>ISBN</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $book_id = htmlspecialchars($row['id']);
-                        echo "<tr>
-                                <td>".htmlspecialchars($row['title'])."</td>
-                                <td>".htmlspecialchars($row['author'])."</td>
-                                <td>".htmlspecialchars($row['year'])."</td>
-                                <td>".htmlspecialchars($row['isbn'])."</td>
-                                <td>
-                                    <a href='?edit_id={$book_id}&search={$search}' class='action-button edit-btn'>Edit</a>
-                                    <form method='POST' action='' style='display:inline;' onsubmit=\"return confirm('Are you sure you want to delete this book?');\">
-                                        <input type='hidden' name='book_id_to_delete' value='{$book_id}'>
-                                        <button type='submit' name='delete_book' class='action-button remove-btn'>Delete</button>
-                                    </form>
-                                </td>
-                              </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='5'>No books found</td></tr>";
+    <!-- Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Publication Year</th>
+                <th>ISBN</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $book_id = htmlspecialchars($row['id']);
+                    echo "<tr>
+                            <td>".htmlspecialchars($row['title'])."</td>
+                            <td>".htmlspecialchars($row['author'])."</td>
+                            <td>".htmlspecialchars($row['year'])."</td>
+                            <td>".htmlspecialchars($row['isbn'])."</td>
+                            <td>
+                                <a href='?edit_id={$book_id}&search={$search}' class='action-button edit-btn'>Edit</a>
+                                <form method='POST' action='' style='display:inline;' onsubmit=\"return confirm('Are you sure you want to delete this book?');\">
+                                    <input type='hidden' name='book_id_to_delete' value='{$book_id}'>
+                                    <button type='submit' name='delete_book' class='action-button remove-btn'>Delete</button>
+                                </form>
+                            </td>
+                          </tr>";
                 }
-                ?>
-            </tbody>
-        </table>
-    </div>
+            } else {
+                echo "<tr><td colspan='5'>No books found</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
 </div>
 
 <?php
@@ -317,7 +335,7 @@ if (isset($_GET['edit_id'])) {
                 <input type="number" name="year" value="<?= htmlspecialchars($book_to_edit['year']); ?>" required>
 
                 <label>ISBN</label>
-                <input type="number" name="isbn" value="<?= htmlspecialchars($book_to_edit['isbn']); ?>" required>
+                <input type="number" name="isbn" value="<?= htmlspecialchars($book_to_edit['isbn']); ?>" readonly>
 
                 <input type="submit" name="edit_book" value="Save Changes">
             </form>

@@ -1,8 +1,5 @@
 <?php
-/* --------------------------------------
-   Database Connection Setup
-   Connect to MySQL server and Library Management System
------------------------------------------*/
+// Database Connection
 $servername = "mysql-db";
 $username = "root";
 $password = "rootpassword";
@@ -25,10 +22,8 @@ if (isset($_GET['search'])) {
 } else {
     $query = "SELECT * FROM books WHERE status='available'";
 }
-
 $result = $mysql->query($query);
 ?>
-<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,78 +31,89 @@ $result = $mysql->query($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Librarian Book Catalog</title>
     <style>
-         /* CCS STYLES DESIGN */
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-            color: #2e4d2e;
-            text-align: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
-        h2 {
-            color: #1b5e20;
-        }
-
-        a button {
-            display: inline-block;
-            margin: 5px;
-            color: #fff;
+        header {
             background: #2e7d32;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .nav-buttons a button {
+            margin-left: 10px;
+            background: white;
+            color: #2e7d32;
+            font-weight: bold;
             border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        a button:hover {
+        .nav-buttons a button:hover {
             background: #1b5e20;
+            color: white;
         }
 
         .container {
-            display: flex;     
-            flex-direction: column;  
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            padding: 20px;
         }
 
         #catalog {
-            background: #ffffff;
-            border: 2px solid #2e7d32;
+            background: white;
             border-radius: 10px;
-            padding: 20px;
-            width: 80%;
-            max-width: 800px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         #catalog h4 {
-            margin: 0 0 15px 0;
-            color: #1b5e20;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #2e7d32;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
         }
 
-        #catalog input[type="text"] {
-            padding: 6px;
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
             width: 60%;
-            border: 1px solid #ccc;
+            border: 1px solid #bbb;
             border-radius: 6px;
-            margin-right: 5px;
         }
 
-        #catalog input[type="submit"] {
+        input[type="submit"], .refresh-btn {
             background: #2e7d32;
             color: white;
             border: none;
-            padding: 6px 15px;
+            padding: 8px 16px;
             border-radius: 6px;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        #catalog input[type="submit"]:hover {
+        input[type="submit"]:hover, .refresh-btn:hover {
             background: #1b5e20;
         }
 
@@ -118,8 +124,9 @@ $result = $mysql->query($query);
         }
 
         th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
         }
 
         th {
@@ -128,31 +135,32 @@ $result = $mysql->query($query);
         }
 
         tr:nth-child(even) {
-            background: #f2f2f2;
+            background: #f9f9f9;
         }
-
     </style>
 </head>
 <body>
-    <div class="container">
-          <h2>Librarian Book Catalog</h2>
-         <!-- Top navigation -->
-        <div class="header">
+    <!-- Top Header -->
+    <header>
+        <h2>Librarian Book Catalog</h2>
+        <div class="nav-buttons">
             <a href="Login.php"><button>Log out</button></a>
             <a href="AddBook.php"><button>Add Book</button></a>
-            <a href="ReturnAndBorrowBooks.php"><button>Return and Borrow Books</button></a>
-            <a href="EditAndRemoveBooks.php"><button>Edit and Remove Books</button></a>
-
+            <a href="ReturnAndBorrowBooks.php"><button>Return & Borrow</button></a>
+            <a href="EditAndRemoveBooks.php"><button>Edit & Remove</button></a>
         </div>
-        <!-- Search Form -->
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
         <div id="catalog">
-            <h4>Librarian Book Catalog</h4>
+            <h4>Book List</h4>
             <form method="GET" action="">
-                <form method="GET" action="">
-                    <input type="text" name="search" placeholder="Search by Title, Author, Year, ISBN..." value="<?php echo htmlspecialchars($search); ?>">
-                    <input type="submit" value="Search">
-                </form>
-        <!-- Book Table -->
+                <input type="text" name="search" placeholder="Search by Title, Author, Year, ISBN..." value="<?php echo htmlspecialchars($search); ?>">
+                <input type="submit" value="Search">
+                <a href="LibrarianCatalog.php"><button type="button" class="refresh-btn">Refresh</button></a> 
+            </form>
+            <!-- Book Table -->
             <table>
                 <tr>
                     <th>Book Title</th>
@@ -180,6 +188,4 @@ $result = $mysql->query($query);
 </body>
 </html>
 
-<?php
-$mysql->close();
-?>
+<?php $mysql->close(); ?>

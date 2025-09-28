@@ -322,7 +322,6 @@ if (isset($_GET['edit_id'])) {
     $stmt->bind_param("i", $edit_id);
     $stmt->execute();
     $edit_result = $stmt->get_result();
-
     if ($edit_result->num_rows > 0) {
         $book_to_edit = $edit_result->fetch_assoc();
         ?>

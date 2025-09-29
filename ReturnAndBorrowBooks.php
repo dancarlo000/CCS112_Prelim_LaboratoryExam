@@ -219,6 +219,10 @@ $result = $mysql->query($query);
 
 <?php
 $mysql->close();
+<<<<<<< HEAD
 ?>
 
 
+=======
+?>
+>>>>>>> final-product

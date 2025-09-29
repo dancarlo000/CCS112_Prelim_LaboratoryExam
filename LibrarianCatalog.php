@@ -174,7 +174,11 @@ $result = $mysql->query($query);
 </body>
 </html>
 
+<<<<<<< HEAD
 <?php
 $mysql->close();
 ?>
 
+=======
+<?php $mysql->close(); ?>
+>>>>>>> final-product

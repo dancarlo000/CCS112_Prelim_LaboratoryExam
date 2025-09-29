@@ -353,8 +353,12 @@ if (isset($_GET['edit_id'])) {
 ?>
 
 </body>
+<<<<<<< HEAD
 </html>
 
 <?php
 $mysql->close();
 ?>
+=======
+</html>
+>>>>>>> final-product

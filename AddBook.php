@@ -182,5 +182,3 @@ if ($mysql->connect_error) {
   </div>
 </body>
 </html>
-
-

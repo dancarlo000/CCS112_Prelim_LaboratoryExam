@@ -215,4 +215,3 @@ input[type="submit"]:hover, .borrow:hover, .refresh-btn:hover {
 </html>
 
 <?php $mysql->close(); ?>
-
